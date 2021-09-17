@@ -15,7 +15,7 @@ namespace bowling
             //int[] arr = { 10, 1, 9, 1, };
             //int[] arr = { 10, 10, 1, 9, 1, };
             //int[] arr = { 10, 10, 10,1, 9, 1, };
-            //int[] arr = { 1, 1, 1, 1, 9,1,2,8,9,1,10,10,10,10,1,8};
+            int[] arr = { 1, 1, 1, 1, 9,1,2,8,9,1,10,10};
             //int[] arr = { 10, 10, 10, 10, 10, 10, 10, 10, 10,   10,10,10 };
             //int[] arr = { 10, 10, 10, 10, 10, 10, 10, 10, 10,   10, 1, 9 };
             //int[] arr = { 10, 10, 10, 10, 10, 10, 10, 10, 10,    1, 9,9 };
@@ -23,7 +23,7 @@ namespace bowling
             //int[] arr = { 10, 10, 10, 10, 10, 10, 10, 10, 10,    1, 1 };
             //int[] arr = { 10, 10, 10, 10, 10, 10, 10, 10, 10,    1, 8 };
             //int[] arr = { 1, 9, 5, 5, 7, 0,10 };
-            int[] arr = { 10, 10, 5, 4, 7, 0, 10 };
+            //int[] arr = { 10, 10, 5, 4, 7, 0, 10 };
             //int[] arr = { 10, 10, 10, 4, 7, 0, 10 };
 
             int firstball = 0;
@@ -154,16 +154,9 @@ namespace bowling
 
                             if (gamecount2 == 11 )
                             {
-
-                                if (gamecount2 > 9)
-                                {
-                                    //GameList[gameCount - 1,0] += GameList[gameCount,0];
-                                }
+                                GameList[gameCount, 1] = 1;                                
                             }
-                            else
-                            {
-                                GameList[gameCount, 1] = 1;    
-                            }
+                            
                             firstball = 0;
                             secondball = 0;
                         }                        

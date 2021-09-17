@@ -23,6 +23,11 @@ namespace bowling
             int gamecount2 = 8;
             bool spare = false;
 
+            var s = arr.Where(c => c > 10 || c < 0);
+
+            if (s.Any()) throw new ArgumentOutOfRangeException("pinDowned", "all should be from  0 to 10");
+           
+
             for (int i = 0; i < GameList.GetLength(1); i++)
             {
                 //all incomplete game as 0, completed as 1

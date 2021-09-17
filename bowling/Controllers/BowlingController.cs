@@ -19,7 +19,12 @@ namespace bowling.Controllers
         [HttpPost]
         public ActionResult GetBowlingMark([FromBody] payload pinDowned) 
         {   
-            BowlingRepo b = new BowlingRepo();            
+            BowlingRepo b = new BowlingRepo();
+
+            if (pinDowned == null)
+            {
+                return NotFound();
+            }
 
             return Ok(b.GetMark(pinDowned));
             

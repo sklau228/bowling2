@@ -37,10 +37,10 @@ namespace Bowling.Test
             //arange
             var controller = new BowlingController();
             payload p = new payload();
-            int[] arr = {1,1,1,1};
+            int[] arr = {1,1,1,1,1,1,1,1,1,1,1,1};
             p.pinDowned = arr;
 
-            string[] resultscore = { "2", "4" };
+            string[] resultscore = { "2", "4","6", "8", "10", "12" };
             bool resultComplete = false;
 
             //act

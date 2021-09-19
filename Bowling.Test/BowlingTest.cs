@@ -1,18 +1,14 @@
 using bowling;
-using bowling.Controllers;
-using System;
 using Xunit;
 
 namespace Bowling.Test
 {
     public class BowlingControllerTests
     {
-
         [Fact]
         public void Test_CheckPerfectGame()
         {
-            //arange
-            var controller = new BowlingController();
+            //arange            
             payload p = new payload();
             int[] arr = { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
             p.pinDowned = arr;
@@ -22,7 +18,6 @@ namespace Bowling.Test
 
             //act
             BowlingRepo br = new BowlingRepo();
-
             Response resp = br.GetMark(p);
 
             //assert
@@ -34,8 +29,7 @@ namespace Bowling.Test
         [Fact]
         public void Test_CheckIncompleteGame1()
         {
-            //arange
-            var controller = new BowlingController();
+            //arange            
             payload p = new payload();
             int[] arr = {1,1,1,1,1,1,1,1,1,1,1,1};
             p.pinDowned = arr;
@@ -57,8 +51,7 @@ namespace Bowling.Test
         [Fact]
         public void Test_CheckIncompleteGame2()
         {
-            //arange
-            var controller = new BowlingController();
+            //arange            
             payload p = new payload();
             int[] arr = { 1, 1, 1, 1, 9, 1, 2, 8, 9, 1, 10, 10 };
             p.pinDowned = arr;
@@ -68,7 +61,6 @@ namespace Bowling.Test
 
             //act
             BowlingRepo br = new BowlingRepo();
-
             Response resp = br.GetMark(p);
 
             //assert
@@ -79,8 +71,7 @@ namespace Bowling.Test
         [Fact]
         public void Test_CheckcompleteGame_lastgame_10_1_9()
         {
-            //arange
-            var controller = new BowlingController();
+            //arange           
             payload p = new payload();
             int[] arr = { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 1, 9 };
             p.pinDowned = arr;
@@ -90,7 +81,6 @@ namespace Bowling.Test
 
             //act
             BowlingRepo br = new BowlingRepo();
-
             Response resp = br.GetMark(p);
 
             //assert
@@ -101,8 +91,7 @@ namespace Bowling.Test
         [Fact]
         public void Test_CheckcompleteGame_lastgame_1_9_9()
         {
-            //arange
-            var controller = new BowlingController();
+            //arange           
             payload p = new payload();
             int[] arr = { 10, 10, 10, 10, 10, 10, 10, 10, 10,  1, 9, 9 };
             p.pinDowned = arr;
@@ -112,7 +101,6 @@ namespace Bowling.Test
 
             //act
             BowlingRepo br = new BowlingRepo();
-
             Response resp = br.GetMark(p);
 
             //assert
@@ -123,8 +111,7 @@ namespace Bowling.Test
         [Fact]
         public void Test_CheckcompleteGame_lastgame_1_1()
         {
-            //arange
-            var controller = new BowlingController();
+            //arange      
             payload p = new payload();
             int[] arr = { 10, 10, 10, 10, 10, 10, 10, 10, 10, 1,1 };
             p.pinDowned = arr;
@@ -134,7 +121,6 @@ namespace Bowling.Test
 
             //act
             BowlingRepo br = new BowlingRepo();
-
             Response resp = br.GetMark(p);
 
             //assert
@@ -146,8 +132,7 @@ namespace Bowling.Test
         [Fact]
         public void Test_CheckcompleteGame_lastgame_1()
         {
-            //arange
-            var controller = new BowlingController();
+            //arange           
             payload p = new payload();
             int[] arr = { 10, 10, 10, 10, 10, 10, 10, 10, 10, 1 };
             p.pinDowned = arr;
@@ -157,13 +142,11 @@ namespace Bowling.Test
 
             //act
             BowlingRepo br = new BowlingRepo();
-
             Response resp = br.GetMark(p);
 
             //assert
             Assert.Equal(resp.frameProgressScores.ToString(), resultscore.ToString());
             Assert.Equal(resp.gameCompleted, resultComplete);
         }
-
     }
 }

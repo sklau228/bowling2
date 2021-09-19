@@ -1,21 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Runtime.Serialization.Json;
-using System.IO;
-
-
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace bowling.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class BowlingController : ControllerBase
-    {
-     
+    {     
         [HttpPost]
         public ActionResult GetBowlingMark([FromBody] payload pinDowned) 
         {   
@@ -25,10 +15,7 @@ namespace bowling.Controllers
             {
                 return NotFound();
             }
-
-            return Ok(b.GetMark(pinDowned));
-            
+            return Ok(b.GetMark(pinDowned));            
         }
-
     }
 }

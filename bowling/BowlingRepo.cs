@@ -10,7 +10,7 @@ namespace bowling
 
         public Response GetMark(payload p)
         {
-            int[,] GameList = new int[10,2];
+            int[,] GameList = new int[10, 2];
             Response resp = new Response();
             resp.gameCompleted = true;
             int[] arr;
@@ -26,14 +26,20 @@ namespace bowling
             var s = arr.Where(c => c > 10 || c < 0);
 
             if (s.Any()) throw new ArgumentOutOfRangeException("pinDowned", "all should be from  0 to 10");
-           
 
-            for (int i = 0; i < GameList.GetLength(1); i++)
-            {
-                //all incomplete game as 0, completed as 1
-                GameList[i, 1] = 0;
-            }
+            InitialiseGameComplete(GameList);
 
+            ProcessGameScore(GameList, arr, ref firstball, ref secondball, ref firststrike, ref secondstrike, ref gameCount, ref gamecount2, ref spare);
+
+            UpdateGameScore(GameList, resp);
+
+            CheckIfGameIsCompleted(GameList, resp);
+
+            return resp;
+        }
+
+        private static void ProcessGameScore(int[,] GameList, int[] arr, ref int firstball, ref int secondball, ref bool firststrike, ref bool secondstrike, ref int gameCount, ref int gamecount2, ref bool spare)
+        {
             for (int i = 0; i < arr.Length; i++)
             {
                 if (gameCount > 8)
@@ -87,7 +93,6 @@ namespace bowling
                             GameList[gameCount - 1, 0] += arr[i];
                             GameList[gameCount - 1, 1] = 1;
                         }
-
                     }
                     else
                     {
@@ -146,7 +151,7 @@ namespace bowling
                             {
                                 GameList[gameCount, 1] = 1;
                             }
-                            
+
                             firstball = 0;
                             secondball = 0;
                         }
@@ -217,37 +222,49 @@ namespace bowling
                     }
                 }
             }
+        }
 
+        private static void InitialiseGameComplete(int[,] GameList)
+        {
+            for (int i = 0; i < GameList.GetLength(1); i++)
+            {
+                //all incomplete game as 0, completed as 1
+                GameList[i, 1] = 0;
+            }
+        }
+
+        private static void CheckIfGameIsCompleted(int[,] GameList, Response resp)
+        {
+            for (int i = 0; i < GameList.GetLength(0); i++)
+            {
+                if (GameList[i, 1] == 0)
+                {
+                    resp.gameCompleted = false;
+                }
+            }
+        }
+
+        private static void UpdateGameScore(int[,] GameList, Response resp)
+        {
             int sum = 0;
             List<string> result = new List<string>();
             for (int i = 0; i < GameList.GetLength(0); i++)
             {
-                if (GameList[i,1]==1)
+                if (GameList[i, 1] == 1)
                 {
                     sum += GameList[i, 0];
                     result.Add(sum.ToString());
                 }
                 else
                 {
-                    if (GameList[i,0]!=0)
+                    if (GameList[i, 0] != 0)
                     {
                         result.Add("*");
-                    }                    
+                    }
                 }
             }
-
-            for (int i = 0; i < GameList.GetLength(0); i++)
-            {
-                if (GameList[i,1]==0)
-                {
-                    resp.gameCompleted = false;
-                }                
-            }
             resp.frameProgressScores = result.ToArray();
-
-            return resp;
         }
-
     }
 
     public class Response

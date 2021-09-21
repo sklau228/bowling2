@@ -22,11 +22,7 @@ namespace scores
             int gameCount = 0;
             int gamecount2 = 8;
             bool spare = false;
-
-            var s = arr.Where(c => c > 10 || c < 0);
-
-            if (s.Any()) throw new ArgumentOutOfRangeException("pinDowned", "all should be from  0 to 10");
-
+                     
             InitialiseGameComplete(GameList);
 
             ProcessGameScore(GameList, arr, ref firstball, ref secondball, ref firststrike, ref secondstrike, ref gameCount, ref gamecount2, ref spare);

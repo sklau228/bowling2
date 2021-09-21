@@ -11,10 +11,19 @@ namespace scores.Controllers
         {   
             BowlingRepo b = new BowlingRepo();
 
-            if (pinDowned == null)
+            if (pinDowned.pinDowned is null)
             {
                 return NotFound();
             }
+            else
+            {
+                int[] p = pinDowned.pinDowned;
+                if (p.Length > 12)
+                {
+                    return BadRequest("ttttt");
+                }                
+            }
+            
             return Ok(b.GetMark(pinDowned));            
         }
     }

@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace bowling.Controllers
+namespace scores.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
-    public class BowlingController : ControllerBase
+    public class scoresController : ControllerBase
     {     
         [HttpPost]
         public ActionResult GetBowlingMark([FromBody] payload pinDowned) 

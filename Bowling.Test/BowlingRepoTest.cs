@@ -1,9 +1,9 @@
-using bowling;
+using scores;
 using Xunit;
 
 namespace Bowling.Test
 {
-    public class BowlingControllerTests
+    public class BowlingRepoTests
     {
         [Fact]
         public void Test_CheckPerfectGame()
@@ -21,10 +21,30 @@ namespace Bowling.Test
             Response resp = br.GetMark(p);
 
             //assert
-            Assert.Equal(resp.frameProgressScores.ToString(), resultscore.ToString());
+            Assert.Equal(string.Join(",",resp.frameProgressScores), string.Join(",",resultscore));
             Assert.Equal(resp.gameCompleted, resultComplete);
         }
 
+        [Fact]
+        public void Test_CheckIncompleteGame19()
+        {
+            //arange            
+            payload p = new payload();
+            int[] arr = { 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9 };
+            p.pinDowned = arr;
+
+            string[] resultscore = { "2", "4", "6", "8", "10", "12" };
+            bool resultComplete = false;
+
+            //act
+            BowlingRepo br = new BowlingRepo();
+
+            Response resp = br.GetMark(p);
+
+            //assert
+            Assert.Equal(string.Join(",", resp.frameProgressScores), string.Join(",", resultscore));
+            Assert.Equal(resp.gameCompleted, resultComplete);
+        }
 
         [Fact]
         public void Test_CheckIncompleteGame1()
@@ -40,10 +60,10 @@ namespace Bowling.Test
             //act
             BowlingRepo br = new BowlingRepo();
 
-            Response resp= br.GetMark(p);            
+            Response resp= br.GetMark(p);
 
             //assert
-            Assert.Equal(resp.frameProgressScores.ToString(), resultscore.ToString());
+            Assert.Equal(string.Join(",", resp.frameProgressScores), string.Join(",", resultscore));
             Assert.Equal(resp.gameCompleted, resultComplete);
         }
 
@@ -64,7 +84,7 @@ namespace Bowling.Test
             Response resp = br.GetMark(p);
 
             //assert
-            Assert.Equal(resp.frameProgressScores.ToString(), resultscore.ToString());
+            Assert.Equal(string.Join(",", resp.frameProgressScores), string.Join(",", resultscore));
             Assert.Equal(resp.gameCompleted, resultComplete);
         }
 
@@ -84,7 +104,7 @@ namespace Bowling.Test
             Response resp = br.GetMark(p);
 
             //assert
-            Assert.Equal(resp.frameProgressScores.ToString(), resultscore.ToString());
+            Assert.Equal(string.Join(",", resp.frameProgressScores), string.Join(",", resultscore));
             Assert.Equal(resp.gameCompleted, resultComplete);
         }
 
@@ -104,7 +124,7 @@ namespace Bowling.Test
             Response resp = br.GetMark(p);
 
             //assert
-            Assert.Equal(resp.frameProgressScores.ToString(), resultscore.ToString());
+            Assert.Equal(string.Join(",", resp.frameProgressScores), string.Join(",", resultscore));
             Assert.Equal(resp.gameCompleted, resultComplete);
         }
 
@@ -124,7 +144,7 @@ namespace Bowling.Test
             Response resp = br.GetMark(p);
 
             //assert
-            Assert.Equal(resp.frameProgressScores.ToString(), resultscore.ToString());
+            Assert.Equal(string.Join(",", resp.frameProgressScores), string.Join(",", resultscore));
             Assert.Equal(resp.gameCompleted, resultComplete);
         }
 
@@ -145,7 +165,7 @@ namespace Bowling.Test
             Response resp = br.GetMark(p);
 
             //assert
-            Assert.Equal(resp.frameProgressScores.ToString(), resultscore.ToString());
+            Assert.Equal(string.Join(",", resp.frameProgressScores), string.Join(",", resultscore));
             Assert.Equal(resp.gameCompleted, resultComplete);
         }
     }
